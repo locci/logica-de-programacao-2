@@ -8,13 +8,24 @@ public class MainsTest {
 	Samples classUnderTest = new Samples();
 	
 	@Test
-	public void MainTest() {
-		String[] actuals = classUnderTest.sampleReader("src/main/java/algoritmos/ep1/", "logHorm1", "coor", " ", 3000,
-				100);
-//		String[] actuals = classUnderTest.sampleReader("src/main/test/algoritmos/ep1/", "logLadder", "coorLadder", " ", 4,
-		String[] expecteds = {"120202", "-1", "50"};
-		Assert.assertArrayEquals(expecteds, actuals);
+	public void MainLogHorm1Test() {
+		classUnderTest.sampleReader("src/test/java/algoritmos/ep1/", "coor", "logHorm1", " ", 100);
 		Assert.assertTrue(true);
+		
+	}
+	
+	@Test
+	public void MainLogHorm2Test() {
+		classUnderTest.sampleReader("src/test/java/algoritmos/ep1/", "coor", "logHorm2", " ", 100);
+		Assert.assertTrue(true);
+		
+	}
+	
+	@Test
+	public void MainLogHorm3Test() {
+		classUnderTest.sampleReader("src/test/java/algoritmos/ep1/", "coor", "logHorm3", " ", 100);
+		Assert.assertTrue(true);
+		
 	}
 
 }
