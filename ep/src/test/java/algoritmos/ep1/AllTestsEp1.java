@@ -6,5 +6,5 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ ReaderFileTest.class, SamplesTest.class })
-public class AllTests {
+public class AllTestsEp1 {
 }

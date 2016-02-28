@@ -41,6 +41,7 @@ class Samples {
 		String[][] logHormArray = reader.fileToArray(logFilePath, regex, quantidadeDeLinhadDoArquivoDeLog, quantidadeDeColunasLog);
 				
 		String[] returnArray = new String[coorArray.length / 2];
+		String message = "";
 		
 		int indiceReturnArray = 0;
 		for (int i = 0; i < coorArray.length;) {
@@ -48,19 +49,15 @@ class Samples {
 			int column = coorArray[i+1];
 			if (line >= quantidadeDeLinhadDoArquivoDeLog || column >= quantidadeDeColunasLog || logHormArray[line][column] == null) {
 				returnArray[indiceReturnArray] = "-1";
-				//TODO sysout oficial do resultado
 				System.out.println("-1");
 			}else{
-				//TODO sysout oficial do resultado
 				System.out.println(logHormArray[line][column]);
 				returnArray[indiceReturnArray] = logHormArray[line][column];				
 			}
 			i = i+2;
 			indiceReturnArray++;
 		}
-
-		
-		
+		System.out.println(message);
 		return returnArray;
 	}
 
