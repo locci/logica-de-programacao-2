@@ -81,8 +81,14 @@ class Ep2 {
 		for (int i = 0; i < questionLines.length; i++) {
 			Matcher matcher = pattern.matcher(questionLines[i]);
 			if (matcher.matches()) {
-				int[] set1 = converter.stringToIntArray(matcher.group(1), split_regex);
-				int[] set2 = converter.stringToIntArray(matcher.group(3), split_regex);
+				int[] set1 = {};
+				int[] set2 = {};
+				if(!(matcher.group(1).equals(""))){
+					set1 = converter.stringToIntArray(matcher.group(1), split_regex);
+				}
+				if(!(matcher.group(3).equals(""))){
+					set2 = converter.stringToIntArray(matcher.group(3), split_regex);
+				}
 				switch (matcher.group(2)) {
 				case "u":
 
@@ -95,11 +101,17 @@ class Ep2 {
 					answerLines[i] = sets.subtraction(set1, set2);
 					break;
 				default:
+					// TODO sysout
+					System.out.println("Entrou no default do switch");
 					answerLines[i] = "ERROR!";
 					break;
 				}
 			} else {
-				answerLines[i] = sets.cardinal(questionLines[i]);
+				if (questionLines[i].equals("{}")) {
+					answerLines[i] = "0";
+				} else{
+					answerLines[i] = sets.cardinal(questionLines[i]);
+				}
 			}
 		}
 		return answerLines;
@@ -337,7 +349,8 @@ class NumericalSets {
 	}
 
 	/**
-	 * Sort - Varre dois arrays e retorna um array com o número de elementos de cada item.
+	 * Sort - Varre dois arrays e retorna um array com o número de elementos de
+	 * cada item.
 	 * 
 	 * @param set1
 	 *            array de inteiros

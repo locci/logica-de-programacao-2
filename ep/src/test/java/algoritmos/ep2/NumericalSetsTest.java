@@ -16,6 +16,27 @@ public class NumericalSetsTest {
 		String expected = "{1, 2, 3, 4, 6}";
 		Assert.assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void unionNullSetTest() {
+		int[] set1 = { 1, 2, 3, 4 };
+		int[] set2 = {};
+		String actual = classUnderTest.union(set1, set2);
+		String expected = "{1, 2, 3, 4}";
+		Assert.assertEquals(expected, actual);
+		
+		int[] set3 = {};
+		int[] set4 = {1, 2, 3, 4};
+		actual = classUnderTest.union(set3, set4);
+		expected = "{1, 2, 3, 4}";
+		Assert.assertEquals(expected, actual);
+		
+		int[] set5 = {};
+		int[] set6 = {};
+		actual = classUnderTest.union(set5, set6);
+		expected = "{}";
+		Assert.assertEquals(expected, actual);
+	}
 
 	// intersection
 	@Test
@@ -26,6 +47,27 @@ public class NumericalSetsTest {
 		String expected = "{2}";
 		Assert.assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void intersectionNullSetTest() {
+		int[] set1 = { 1, 2, 3, 4 };
+		int[] set2 = {};
+		String actual = classUnderTest.intersection(set1, set2);
+		String expected = "{}";
+		Assert.assertEquals(expected, actual);
+		
+		int[] set3 = {};
+		int[] set4 = {1, 2, 3, 4};
+		actual = classUnderTest.intersection(set3, set4);
+		expected = "{}";
+		Assert.assertEquals(expected, actual);
+		
+		int[] set5 = {};
+		int[] set6 = {};
+		actual = classUnderTest.intersection(set5, set6);
+		expected = "{}";
+		Assert.assertEquals(expected, actual);
+	}
 
 	// subtraction
 	@Test
@@ -34,6 +76,27 @@ public class NumericalSetsTest {
 		int[] set2 = { 2, 6 };
 		String actual = classUnderTest.subtraction(set1, set2);
 		String expected = "{1, 3, 4}";
+		Assert.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void subtractionNullSetTest() {
+		int[] set1 = { 1, 2, 3, 4 };
+		int[] set2 = {};
+		String actual = classUnderTest.subtraction(set1, set2);
+		String expected = "{1, 2, 3, 4}";
+		Assert.assertEquals(expected, actual);
+		
+		int[] set3 = {};
+		int[] set4 = {1, 2, 3, 4};
+		actual = classUnderTest.subtraction(set3, set4);
+		expected = "{}";
+		Assert.assertEquals(expected, actual);
+		
+		int[] set5 = {};
+		int[] set6 = {};
+		actual = classUnderTest.subtraction(set5, set6);
+		expected = "{}";
 		Assert.assertEquals(expected, actual);
 	}
 

@@ -19,6 +19,23 @@ public class Ep2Test {
 		String[] expecteds = {"{1, 2, 3, 4, 6}", "{1, 2, 3, 4, 5, 6, 7, 10}", "{1, 2, 3, 4, 5, 6, 8}"};
 		Assert.assertArrayEquals(expecteds, actuals);
 	}
+	
+	@Test
+	public void setsOperationsUnionNullTest(){
+		String[] input = {"{1, 2, 3, 4} u {}"};
+		String[] actuals = classUnderTest.setsOperations(input);
+		String[] expecteds = {"{1, 2, 3, 4}"};
+		Assert.assertArrayEquals(expecteds, actuals);
+		
+		String[] input2 = {"{} u {1, 2, 3, 4}"};
+		actuals = classUnderTest.setsOperations(input2);
+		Assert.assertArrayEquals(expecteds, actuals);
+		
+		String[] input3 = {"{} u {}"};
+		actuals = classUnderTest.setsOperations(input3);
+		String[] expecteds3 = {"{}"};
+		Assert.assertArrayEquals(expecteds3, actuals);
+	}
 
 	// intersection
 	@Test
@@ -27,6 +44,23 @@ public class Ep2Test {
 		String[] actuals = classUnderTest.setsOperations(input);
 		String[] expecteds = {"{2, 4}", "{4, 10}", "{2, 5}"};
 		Assert.assertArrayEquals(expecteds, actuals);
+	}
+	
+	@Test
+	public void setsOperationsIntersectionNullTest(){
+		String[] input = {"{1, 2, 3, 4} i {}"};
+		String[] actuals = classUnderTest.setsOperations(input);
+		String[] expecteds = {"{}"};
+		Assert.assertArrayEquals(expecteds, actuals);
+		
+		String[] input2 = {"{} i {1, 2, 3, 4}"};
+		actuals = classUnderTest.setsOperations(input2);
+		Assert.assertArrayEquals(expecteds, actuals);
+		
+		String[] input3 = {"{} i {}"};
+		actuals = classUnderTest.setsOperations(input3);
+		String[] expecteds3 = {"{}"};
+		Assert.assertArrayEquals(expecteds3, actuals);
 	}
 
 	// subtraction
@@ -37,6 +71,24 @@ public class Ep2Test {
 		String[] expecteds = {"{5, 6, 7, 8, 9, 10}", "{1, 2, 3, 5}", "{1, 2, 5}"};
 		Assert.assertArrayEquals(expecteds, actuals);
 	}
+	
+	@Test
+	public void setsOperationsSubtractionNullTest(){
+		String[] input = {"{1, 2, 3, 4} s {}"};
+		String[] actuals = classUnderTest.setsOperations(input);
+		String[] expecteds = {"{1, 2, 3, 4}"};
+		Assert.assertArrayEquals(expecteds, actuals);
+		
+		String[] input2 = {"{} s {1, 2, 3, 4}"};
+		actuals = classUnderTest.setsOperations(input2);
+		String[] expecteds2 = {"{}"};
+		Assert.assertArrayEquals(expecteds2, actuals);
+		
+		String[] input3 = {"{} s {}"};
+		actuals = classUnderTest.setsOperations(input3);
+		String[] expecteds3 = {"{}"};
+		Assert.assertArrayEquals(expecteds3, actuals);
+	}
 
 	// cardinal
 	@Test
@@ -46,6 +98,15 @@ public class Ep2Test {
 		String[] expecteds = {"8", "3", "2"};
 		Assert.assertArrayEquals(expecteds, actuals);
 	}
+	
+	@Test
+	public void setsOperationsCardinalNullTest(){
+		String[] input = {"{}", "{}"};
+		String[] actuals = classUnderTest.setsOperations(input);
+		String[] expecteds = {"0", "0"};
+		Assert.assertArrayEquals(expecteds, actuals);
+	}
+	
 	//REGEX
 	@Test
 	public void regexStringTest(){
