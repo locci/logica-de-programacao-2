@@ -13,7 +13,7 @@ public class NumericalSetsTest {
 		int[] set1 = { 1, 2, 3, 4 };
 		int[] set2 = { 2, 6 };
 		String actual = classUnderTest.union(set1, set2);
-		String expected = "{1, 2, 3, 4, 6}";
+		String expected = "{1,2,3,4,6}";
 		Assert.assertEquals(expected, actual);
 	}
 	
@@ -22,13 +22,13 @@ public class NumericalSetsTest {
 		int[] set1 = { 1, 2, 3, 4 };
 		int[] set2 = {};
 		String actual = classUnderTest.union(set1, set2);
-		String expected = "{1, 2, 3, 4}";
+		String expected = "{1,2,3,4}";
 		Assert.assertEquals(expected, actual);
 		
 		int[] set3 = {};
 		int[] set4 = {1, 2, 3, 4};
 		actual = classUnderTest.union(set3, set4);
-		expected = "{1, 2, 3, 4}";
+		expected = "{1,2,3,4}";
 		Assert.assertEquals(expected, actual);
 		
 		int[] set5 = {};
@@ -75,7 +75,7 @@ public class NumericalSetsTest {
 		int[] set1 = { 1, 2, 3, 4 };
 		int[] set2 = { 2, 6 };
 		String actual = classUnderTest.subtraction(set1, set2);
-		String expected = "{1, 3, 4}";
+		String expected = "{1,3,4}";
 		Assert.assertEquals(expected, actual);
 	}
 	
@@ -84,7 +84,7 @@ public class NumericalSetsTest {
 		int[] set1 = { 1, 2, 3, 4 };
 		int[] set2 = {};
 		String actual = classUnderTest.subtraction(set1, set2);
-		String expected = "{1, 2, 3, 4}";
+		String expected = "{1,2,3,4}";
 		Assert.assertEquals(expected, actual);
 		
 		int[] set3 = {};

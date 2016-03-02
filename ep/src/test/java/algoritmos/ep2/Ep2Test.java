@@ -16,7 +16,7 @@ public class Ep2Test {
 	public void setsOperationsUnionTest(){
 		String[] input = {"{1, 2, 3, 4} u {3, 4, 6}", "{1, 2, 3, 4, 10} u {4, 5, 6, 7, 10}", "{1, 2, 3, 4, 5} u {2, 5, 6, 8}"};
 		String[] actuals = classUnderTest.setsOperations(input);
-		String[] expecteds = {"{1, 2, 3, 4, 6}", "{1, 2, 3, 4, 5, 6, 7, 10}", "{1, 2, 3, 4, 5, 6, 8}"};
+		String[] expecteds = {"{1,2,3,4,6}", "{1,2,3,4,5,6,7,10}", "{1,2,3,4,5,6,8}"};
 		Assert.assertArrayEquals(expecteds, actuals);
 	}
 	
@@ -24,7 +24,7 @@ public class Ep2Test {
 	public void setsOperationsUnionNullTest(){
 		String[] input = {"{1, 2, 3, 4} u {}"};
 		String[] actuals = classUnderTest.setsOperations(input);
-		String[] expecteds = {"{1, 2, 3, 4}"};
+		String[] expecteds = {"{1,2,3,4}"};
 		Assert.assertArrayEquals(expecteds, actuals);
 		
 		String[] input2 = {"{} u {1, 2, 3, 4}"};
@@ -42,7 +42,7 @@ public class Ep2Test {
 	public void setsOperationsIntersectionTest(){
 		String[] input = {"{1, 2, 3, 4} i {2, 4}", "{1, 2, 3, 4, 10} i {4, 6, 5, 7, 10}", "{1, 2, 3, 4, 5} i {2, 5, 6, 7, 8}"};
 		String[] actuals = classUnderTest.setsOperations(input);
-		String[] expecteds = {"{2, 4}", "{4, 10}", "{2, 5}"};
+		String[] expecteds = {"{2,4}", "{4,10}", "{2,5}"};
 		Assert.assertArrayEquals(expecteds, actuals);
 	}
 	
@@ -68,7 +68,7 @@ public class Ep2Test {
 	public void setsOperationsSubtractionTest(){
 		String[] input = {"{4, 5, 6, 7, 8, 9, 10, 11} s {1, 2, 3, 4, 11}", "{1, 2, 3, 4, 5, 6} s {4, 6, 7, 10, 7}", "{1, 2, 3, 4, 5} s {3, 4, 6, 7}"};
 		String[] actuals = classUnderTest.setsOperations(input);
-		String[] expecteds = {"{5, 6, 7, 8, 9, 10}", "{1, 2, 3, 5}", "{1, 2, 5}"};
+		String[] expecteds = {"{5,6,7,8,9,10}", "{1,2,3,5}", "{1,2,5}"};
 		Assert.assertArrayEquals(expecteds, actuals);
 	}
 	
@@ -76,7 +76,7 @@ public class Ep2Test {
 	public void setsOperationsSubtractionNullTest(){
 		String[] input = {"{1, 2, 3, 4} s {}"};
 		String[] actuals = classUnderTest.setsOperations(input);
-		String[] expecteds = {"{1, 2, 3, 4}"};
+		String[] expecteds = {"{1,2,3,4}"};
 		Assert.assertArrayEquals(expecteds, actuals);
 		
 		String[] input2 = {"{} s {1, 2, 3, 4}"};
@@ -129,7 +129,7 @@ public class Ep2Test {
 	public void regexGroupTest(){
 //		Pattern pattern = Pattern.compile(Cc52255099.REGEX_TO_EXTRACT_SETS);
 		Pattern pattern = Cc52255099.pattern;
-		String input = "{1, 2, 3, 4} u {2, 6}";
+		String input = "{1, 2, 3, 4}u{2, 6}";
 		Matcher matcher = pattern.matcher(input);
 		Assert.assertTrue(matcher.matches());
 		
@@ -146,4 +146,55 @@ public class Ep2Test {
 		Assert.assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void regexOpcionalTest(){
+		
+		String regex = ".*[uis].*";
+		
+		Pattern pattern = Pattern.compile(regex);
+		
+		String input = "{1, 2, 3, 4} u {2, 6}";
+		Matcher matcher = pattern.matcher(input);
+		Assert.assertTrue(matcher.matches());
+				
+		input = "{1, 2, 3, 4} s {2, 6}";
+		matcher = pattern.matcher(input);
+		Assert.assertTrue(matcher.matches());
+		
+		input = "{1, 2, 3, 4} i {2, 6}";
+		matcher = pattern.matcher(input);
+		Assert.assertTrue(matcher.matches());
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

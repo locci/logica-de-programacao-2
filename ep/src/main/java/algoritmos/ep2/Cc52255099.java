@@ -21,15 +21,17 @@ import java.util.regex.Pattern;
  * @professor Alexandre
  */
 public class Cc52255099 {
-	public static final String SPLIT_REGEX = ", ";
-	public static final String REGEX_TO_EXTRACT_SETS = "\\{([\\d,\\s]*)\\}\\s([uis])\\s\\{([\\d,\\s]*)\\}";
+	public static final String SPLIT_REGEX = ",";
+	public static final String REGEX_TO_EXTRACT_SETS = "\\{([\\d,\\s]*)\\}[\\s]*([uis])[\\s]*\\{([\\d,\\s]*)\\}";
 	public static final Charset CS = StandardCharsets.UTF_8;
 	public static Pattern pattern = Pattern.compile(REGEX_TO_EXTRACT_SETS);
 
 	public static void main(String[] args) {
 
-		String outputFile = "src/main/java/algoritmos/ep2/files/answers";
-		String inputFile = "src/main/java/algoritmos/ep2/files/questions";
+//		String outputFile = "src/main/java/algoritmos/ep2/files/answers";
+//		String inputFile = "src/main/java/algoritmos/ep2/files/questions";
+		String outputFile = "src/main/java/algoritmos/ep2/files/saida";
+		String inputFile = "src/main/java/algoritmos/ep2/files/entrada";
 
 		new Ep2().startBattle(inputFile, outputFile);
 		System.out.println("/n/n/n/nCálculos concluídos./n/n/n");
@@ -79,6 +81,7 @@ class Ep2 {
 		String[] answerLines = new String[questionLines.length];
 
 		for (int i = 0; i < questionLines.length; i++) {
+			questionLines[i] = questionLines[i].replaceAll(" ", "");
 			Matcher matcher = pattern.matcher(questionLines[i]);
 			if (matcher.matches()) {
 				int[] set1 = {};
@@ -101,8 +104,6 @@ class Ep2 {
 					answerLines[i] = sets.subtraction(set1, set2);
 					break;
 				default:
-					// TODO sysout
-					System.out.println("Entrou no default do switch");
 					answerLines[i] = "ERROR!";
 					break;
 				}
@@ -272,7 +273,7 @@ class NumericalSets {
 		String returnData = "";
 		for (int i = 0; i < setElements.length; i++) {
 			if (setElements[i] != 0) {
-				returnData = returnData + i + ", ";
+				returnData = returnData + i + Cc52255099.SPLIT_REGEX;
 			}
 		}
 		returnData = addCurlyBrackets(returnData);
@@ -292,7 +293,7 @@ class NumericalSets {
 		String returnData = "";
 		for (int i = 0; i < setElements.length; i++) {
 			if (setElements[i] > 1) {
-				returnData = returnData + i + ", ";
+				returnData = returnData + i + Cc52255099.SPLIT_REGEX;
 			}
 		}
 		returnData = addCurlyBrackets(returnData);
@@ -312,7 +313,7 @@ class NumericalSets {
 		String returnData = "";
 		for (int i = 0; i < setElements.length; i++) {
 			if (setElements[i] == 1) {
-				returnData = returnData + i + ", ";
+				returnData = returnData + i + Cc52255099.SPLIT_REGEX;
 			}
 		}
 		returnData = addCurlyBrackets(returnData);
@@ -329,7 +330,7 @@ class NumericalSets {
 	public String addCurlyBrackets(String text) {
 		int textSize = text.length();
 		if (textSize > 1) {
-			text = text.substring(0, textSize - 2);
+			text = text.substring(0, textSize - 1);
 		}
 		text = "{" + text + "}";
 		return text;
